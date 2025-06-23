@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADC Loans | Chessboard Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #141414;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4C1;
+            --accent-gold-dark: #B8941F;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+            transition: filter 0.3s ease;
+        }
+
+        .logo:hover img {
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: var(--primary-black);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Hero Section */
+        .product-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 120px;
+            background: linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Key Features Section */
+        .key-features {
+            padding: 80px 0;
+            background: var(--secondary-black);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.02);
+        }
+
+        .feature-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .feature-label {
+            font-size: 18px;
+            color: var(--text-white);
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* Product Details Section */
+        .product-details {
+            padding: 100px 0;
+            background: var(--primary-black);
+        }
+
+        .details-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .details-content h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .details-content p {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .details-list {
+            list-style: none;
+        }
+
+        .details-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .details-list li:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-gray);
+            font-size: 16px;
+        }
+
+        .detail-value {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 100px 0;
+            background: var(--secondary-black);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .use-cases-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .use-case-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .use-case-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .use-case-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .use-case-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .product-cta {
+            padding: 120px 0;
+            background: var(--primary-black);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .cta-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--text-white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            background: var(--primary-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-gray);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-gray);
+        }
+
+        .footer-legal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px 20px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .details-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="chessboard-logo.png" alt="Chessboard Capital" />
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#products" class="active">Capital Solutions</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="product-hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1><span class="gradient-text">ADC Loans</span><br>One Source. Total Control.</h1>
+            <p class="hero-description">Acquire, develop, and construct with a single capital source. Experienced developers and builders benefit by consolidating and streamlining their ADC financing for construction projects.</p>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="key-features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-number">90%</div>
+                <div class="feature-label">Total Project Costs</div>
+                <div class="feature-description">Maximum leverage across all phases</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">No Limit</div>
+                <div class="feature-label">Loan Size</div>
+                <div class="feature-description">Scale without constraints</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">3-in-1</div>
+                <div class="feature-label">Comprehensive Financing</div>
+                <div class="feature-description">Land, horizontal development, and vertical construction</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Section -->
+    <section class="product-details">
+        <div class="details-container">
+            <div class="details-content">
+                <h2>Streamlined Capital for <span class="gradient-text">Complex Projects</span></h2>
+                <p>Our ADC loans eliminate the complexity of multiple lenders and conflicting requirements. With one application, one set of terms, and one relationship to manage, you can focus on what matters most - executing your vision.</p>
+                <p>From entitled land acquisition through project completion, we provide the comprehensive financing structure that sophisticated developers need to move quickly and efficiently.</p>
+            </div>
+            <div class="details-specs">
+                <ul class="details-list">
+                    <li>
+                        <span class="detail-label">Loan-to-Cost</span>
+                        <span class="detail-value">Up to 90%</span>
+                    </li>
+                    <li>
+                        <span class="detail-label">Project Types</span>
+                        <span class="detail-value">SFR, Townhome, Condo</span>
+                    </li>
+                    <li>
+                        <span class="detail-label">Land Requirements</span>
+                        <span class="detail-value">Entitled with Zoning in Place</span>
+                    </li>
+                    <li>
+                        <span class="detail-label">Final Map Approval</span>
+                        <span class="detail-value">Flexibility Available</span>
+                    </li>
+                    <li>
+                        <span class="detail-label">Financing Structure</span>
+                        <span class="detail-value">All Phases or Phasing Strategy</span>
+                    </li>
+                    <li>
+                        <span class="detail-label">Phasing Strategy</span>
+                        <span class="detail-value">Finance on Finished Lot Values</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="section-header">
+            <h2>Designed for <span class="gradient-text">Market Leaders</span></h2>
+        </div>
+        <div class="use-cases-grid">
+            <div class="use-case-card">
+                <div class="use-case-icon">🏗️</div>
+                <h3>Master-Planned Communities</h3>
+                <p>Finance entire developments from raw land to finished homes. Perfect for builders creating comprehensive community projects.</p>
+            </div>
+            <div class="use-case-card">
+                <div class="use-case-icon">📊</div>
+                <h3>Portfolio Expansion</h3>
+                <p>Acquire and develop multiple projects simultaneously. Ideal for builders ready to scale across multiple sites.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="product-cta">
+        <div class="cta-content">
+            <h2>Ready to <span class="gradient-text">Simplify</span> Your Financing?</h2>
+            <p>Discover how ADC financing can streamline your next development project.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button">Schedule Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Capital Solutions</h4>
+                <a href="construction.html">Construction Loans</a>
+                <a href="adc.html">ADC Loans</a>
+                <a href="bridge.html">Bridge Loans</a>
+                <a href="renovation.html">Renovation Loans</a>
+                <a href="equity.html">JV Equity</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="#testimonials">Success Stories</a>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#blog">Market Insights</a>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Chessboard Capital. All rights reserved.</p>
+            <div class="footer-legal">
+                © Chessboard Capital, Inc. Chessboard Capital, LLC 2025 All Rights Reserved. Chessboard Capital, LLC is licensed with the California Department of Financial Protection and Innovation. In California, all loans are made or arranged by Chessboard Capital, LLC pursuant to a California Finance Lenders Law license No. 60DBO-201383 (NMLS ID No. 2672032). Chessboard Capital, Inc. is licensed with the California Department of Real Estate under license no. 01919762. Please visit www.nmlsconsumeraccess.org for more licensing information. All Chessboard Capital companies make loans only for business or commercial purposes and not for personal, family, or household purposes. Loan product availability may be limited in certain states. This is not a commitment to lend. All loans are subject to borrower underwriting and credit approval, at Chessboard Capital's sole and absolute discretion. Rates, fees and related terms are subject to change at any time without notice, and may vary among borrowers, depending on a variety of matters. Other restrictions may apply.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic navigation background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.padding = '15px 0';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>
