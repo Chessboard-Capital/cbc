@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chessboard Capital | Accelerate Your Growth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #141414;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4C1;
+            --accent-gold-dark: #B8941F;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+            transition: filter 0.3s ease;
+        }
+
+        .logo:hover img {
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: var(--primary-black);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(244, 228, 193, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .secondary-button {
+            background: transparent;
+            color: var(--text-white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            background: var(--secondary-black);
+            position: relative;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.02);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: var(--text-gray);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background: var(--primary-black);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            padding: 0 40px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-gray);
+        }
+
+        .products-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .product-card p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .product-features li {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .product-features li::before {
+            content: '→';
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+        }
+
+        .product-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+
+        .product-link:hover {
+            gap: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 150px 0;
+            background: var(--secondary-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            background: var(--primary-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-gray);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-gray);
+        }
+
+        .footer-legal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px 20px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <!-- Replace 'chessboard-logo.png' with your actual logo file path -->
+                <img src="chessboard-logo.png" alt="Chessboard Capital" />
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Capital Solutions</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <div class="hero-tagline">Strategic Capital for Strategic Moves</div>
+            <h1>Accelerate Your <span class="gradient-text">Growth</span></h1>
+            <p class="hero-description">High-leverage capital solutions for expanding builders and investors ready to breakthrough in their markets.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="secondary-button">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Financing Available</div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-number">Builder-First</div>
+                <div class="stat-label">Investor Friendly Financing</div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-number">Growth</div>
+                <div class="stat-label">Focused Capital</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header animate-on-scroll">
+            <h2>Capital Solutions That <span class="gradient-text">Scale</span></h2>
+            <p>Growth capital financing structures designed for builders and investors positioned for their next phase of growth</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Construction Loans -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-icon">🏗️</div>
+                <h3>Construction Loans</h3>
+                <p>Build without limits. Finance your next construction project with up to $5MM per unit.</p>
+                <ul class="product-features">
+                    <li>Up to 95% of total costs</li>
+                    <li>Up to 70% Lot Financing on Day 1</li>
+                    <li>Economy of Scale: Build to market demand, not bank limitations</li>
+                    <li>Equity Lift: Finance based on current lot value, capture appreciation upside</li>
+                </ul>
+                <a href="construction.html" class="product-link">Scale Your Construction →</a>
+            </div>
+
+            <!-- ADC Loans -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-icon">📈</div>
+                <h3>ADC Loans</h3>
+                <p>Acquire, develop, and construct with a single capital source. No limits on loan size for qualified projects.</p>
+                <ul class="product-features">
+                    <li>Up to 90% of total costs</li>
+                    <li>Entitled Land + horizontal development + construction financing</li>
+                    <li>Phasing Strategy: Finance on finished lot values, not raw land costs</li>
+                    <li>Single capital source</li>
+                </ul>
+                <a href="adc.html" class="product-link">Expand Your Portfolio →</a>
+            </div>
+
+            <!-- JV Equity -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-icon">🤝</div>
+                <h3>JV Equity</h3>
+                <p>Partner with capital that thinks like you do. Flexible structures for builders ready to scale aggressively.</p>
+                <ul class="product-features">
+                    <li>100% financing available</li>
+                    <li>True partnership approach</li>
+                    <li>Profit sharing structures</li>
+                </ul>
+                <a href="equity.html" class="product-link">Find Your Growth Partner →</a>
+            </div>
+
+            <!-- Renovation Loans -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-icon">🔨</div>
+                <h3>Renovation Loans</h3>
+                <p>Transform value-add properties into cash-flowing assets or dream homes. Funding available up to $10MM.</p>
+                <ul class="product-features">
+                    <li>Up to 75% ARV</li>
+                    <li>100% rehab costs</li>
+                    <li>Interest reserves included</li>
+                    <li>Light to heavy renovation</li>
+                </ul>
+                <a href="renovation.html" class="product-link">Maximize Your ROI →</a>
+            </div>
+
+            <!-- Bridge Loans -->
+            <div class="product-card animate-on-scroll">
+                <div class="product-icon">🌉</div>
+                <h3>Bridge Loans</h3>
+                <p>Move fast on opportunities. Close in days, not weeks. Available for projects up to $35MM.</p>
+                <ul class="product-features">
+                    <li>Up to 75% LTV</li>
+                    <li>Close in days</li>
+                    <li>Up to 24 month terms</li>
+                </ul>
+                <a href="bridge.html" class="product-link">Accelerate Your Deals →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content animate-on-scroll">
+            <h2>Ready to <span class="gradient-text">Transform</span> Your Market?</h2>
+            <p>Join the builders and investors who outgrow their banks and find real capital partners.</p>
+            <a href="contact.html" class="cta-button">Schedule Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Capital Solutions</h4>
+                <a href="construction.html">Construction Loans</a>
+                <a href="adc.html">ADC Loans</a>
+                <a href="bridge.html">Bridge Loans</a>
+                <a href="renovation.html">Renovation Loans</a>
+                <a href="equity.html">JV Equity</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="index.html#testimonials">Success Stories</a>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#blog">Market Insights</a>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Chessboard Capital. All rights reserved.</p>
+            <div class="footer-legal">
+                © Chessboard Capital, Inc. Chessboard Capital, LLC 2025 All Rights Reserved. Chessboard Capital, LLC is licensed with the California Department of Financial Protection and Innovation. In California, all loans are made or arranged by Chessboard Capital, LLC pursuant to a California Finance Lenders Law license No. 60DBO-201383 (NMLS ID No. 2672032). Chessboard Capital, Inc. is licensed with the California Department of Real Estate under license no. 01919762. Please visit www.nmlsconsumeraccess.org for more licensing information. All Chessboard Capital companies make loans only for business or commercial purposes and not for personal, family, or household purposes. Loan product availability may be limited in certain states. This is not a commitment to lend. All loans are subject to borrower underwriting and credit approval, at Chessboard Capital's sole and absolute discretion. Rates, fees and related terms are subject to change at any time without notice, and may vary among borrowers, depending on a variety of matters. Other restrictions may apply.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect on hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground) {
+                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Dynamic navigation background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.padding = '15px 0';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>
