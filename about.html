@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Chessboard Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #141414;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4C1;
+            --accent-gold-dark: #B8941F;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+            transition: filter 0.3s ease;
+        }
+
+        .logo:hover img {
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: var(--primary-black);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 120px;
+            background: linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 22px;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 100px 0;
+            background: var(--secondary-black);
+        }
+
+        .story-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .story-content {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .story-content h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+
+        .story-content p {
+            font-size: 20px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            padding: 100px 0;
+            background: var(--primary-black);
+        }
+
+        .leadership-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .leader-image {
+            position: relative;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .leader-placeholder {
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: var(--primary-black);
+        }
+
+        .leader-info h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .leader-title {
+            color: var(--accent-gold);
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .leader-bio p {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .credentials {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .credentials h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .credentials ul {
+            list-style: none;
+        }
+
+        .credentials li {
+            color: var(--text-gray);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .credentials li::before {
+            content: '▸';
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 100px 0;
+            background: var(--secondary-black);
+            text-align: center;
+        }
+
+        .mission-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .mission-container h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+
+        .mission-statement {
+            font-size: 28px;
+            line-height: 1.6;
+            color: var(--text-white);
+            margin-bottom: 40px;
+        }
+
+        .mission-description {
+            font-size: 18px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Chess Philosophy Section */
+        .philosophy-section {
+            padding: 100px 0;
+            background: var(--primary-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .philosophy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .philosophy-container h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+
+        .philosophy-content {
+            font-size: 20px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .chess-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            opacity: 0.5;
+        }
+
+        /* CTA Section */
+        .about-cta {
+            padding: 120px 0;
+            background: var(--secondary-black);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .cta-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            background: var(--primary-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .footer-column a {
+            display: block;
+            color: var(--text-gray);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-gray);
+        }
+
+        .footer-legal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 40px 20px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .philosophy-background {
+                width: 400px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="chessboard-logo.png" alt="Chessboard Capital" />
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#products">Capital Solutions</a>
+                <a href="#about" class="active">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>About <span class="gradient-text">Chessboard Capital</span></h1>
+            <p class="hero-description">Strategic thinking, several moves ahead</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content">
+                <h2>Our <span class="gradient-text">Story</span></h2>
+                <p>At Chessboard Capital, we believe growth requires strategic thinking—seeing opportunities several moves ahead. As a specialized lender focused on construction and renovation financing with a dedicated capital markets arm, we're not just another financial institution.</p>
+                <p><strong>We're investors who became lenders.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="leadership-container">
+            <div class="section-header">
+                <h2>Leadership That <span class="gradient-text">Understands</span> Your Business</h2>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-image">
+                    <div class="leader-placeholder">KC</div>
+                    <h3>Kyle Chuang</h3>
+                    <p class="leader-title">Managing Principal</p>
+                </div>
+                <div class="leader-info">
+                    <div class="leader-bio">
+                        <p>Led by managing principal Kyle Chuang, our team brings over 20 years of hands-on capital markets and real estate investment experience to every transaction. Kyle offers institutional credibility paired with entrepreneurial agility, combining the best of both worlds to deliver capital solutions that truly work for growing businesses.</p>
+                        <p>This deep industry knowledge means we understand the challenges builders face—because we've faced them ourselves. We know when speed matters, when flexibility makes the difference, and when traditional lenders miss the opportunity.</p>
+                    </div>
+                    <div class="credentials">
+                        <h4>Experience & Expertise</h4>
+                        <ul>
+                            <li>B.A. in Economics from University of California, Berkeley</li>
+                            <li>Minor in Business Administration from the Haas School of Business</li>
+                            <li>Alumnus of Tsai Hsing Private School, Taipei</li>
+                            <li>Active member of Urban Land Institute (ULI)</li>
+                            <li>Certified Commercial Investment Member (CCIM) Designee</li>
+                            <li>Member of Berkeley Real Estate Alumni Association (BREAA)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="mission-container">
+            <h2>Our <span class="gradient-text">Mission</span></h2>
+            <p class="mission-statement">To accelerate the growth of expanding builders and investors by providing strategic capital solutions that think as far ahead as you do.</p>
+        </div>
+    </section>
+
+    <!-- Chess Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="philosophy-background"></div>
+        <div class="philosophy-container">
+            <div class="chess-icon">♔</div>
+            <h2>Why <span class="gradient-text">Chessboard</span>?</h2>
+            <p class="philosophy-content">Just as chess masters think multiple moves ahead, we structure capital solutions with your long-term strategy in mind. Every decision is calculated, every move deliberate. We see the entire board—market conditions, timing, opportunity—and position our capital to help you win.</p>
+            <p class="philosophy-content" style="margin-top: 30px; font-size: 24px; color: var(--text-white);">Your next move is our next move.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="about-cta">
+        <div class="cta-content">
+            <h2>Ready to Make Your <span class="gradient-text">Next Move</span>?</h2>
+            <p>Let's discuss how strategic capital can accelerate your growth.</p>
+            <a href="#apply" class="cta-button">Start Conversation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Capital Solutions</h4>
+                <a href="construction.html">Construction Loans</a>
+                <a href="adc.html">ADC Loans</a>
+                <a href="bridge.html">Bridge Loans</a>
+                <a href="renovation.html">Renovation Loans</a>
+                <a href="equity.html">JV Equity</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="#about">About Us</a>
+                <a href="#testimonials">Success Stories</a>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#blog">Market Insights</a>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Chessboard Capital. All rights reserved.</p>
+            <div class="footer-legal">
+                © Chessboard Capital, Inc. Chessboard Capital, LLC 2025 All Rights Reserved. Chessboard Capital, LLC is licensed with the California Department of Financial Protection and Innovation. In California, all loans are made or arranged by Chessboard Capital, LLC pursuant to a California Finance Lenders Law license No. 60DBO-201383 (NMLS ID No. 2672032). Chessboard Capital, Inc. is licensed with the California Department of Real Estate under license no. 01919762. Please visit www.nmlsconsumeraccess.org for more licensing information. All Chessboard Capital companies make loans only for business or commercial purposes and not for personal, family, or household purposes. Loan product availability may be limited in certain states. This is not a commitment to lend. All loans are subject to borrower underwriting and credit approval, at Chessboard Capital's sole and absolute discretion. Rates, fees and related terms are subject to change at any time without notice, and may vary among borrowers, depending on a variety of matters. Other restrictions may apply.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic navigation background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.padding = '15px 0';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.padding = '20px 0';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply initial styles to sections
+        const sections = document.querySelectorAll('.story-section, .leadership-section, .mission-section, .philosophy-section');
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
