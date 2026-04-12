@@ -24,6 +24,7 @@ const footerHTML = `
             <a href="bridge.html">Bridge Loans</a>
             <a href="renovation.html">Renovation Loans</a>
             <a href="equity.html">JV Equity</a>
+            <a href="rescuecapital.html">Rescue Capital</a>
         </div>
         <div class="footer-column">
             <h4>Company</h4>
