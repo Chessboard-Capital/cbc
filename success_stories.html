@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories | Chessboard Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #141414;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4C1;
+            --accent-gold-dark: #B8941F;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { height: 50px; display: flex; align-items: center; }
+        .logo img { height: 100%; width: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--text-white); }
+
+        /* Hero */
+        .hero {
+            padding: 160px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+        }
+
+        .hero h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 800; margin-bottom: 20px; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-description { font-size: 20px; color: var(--text-gray); max-width: 800px; margin: 0 auto; }
+
+        /* Success Stories Grid */
+        .case-studies {
+            padding: 60px 0 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .case-card {
+            background: var(--secondary-black);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+
+        .case-card:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
+
+        .case-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .loan-type { font-size: 13px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .loan-amount { font-size: 28px; font-weight: 800; color: var(--text-white); }
+
+        .property-info { margin-bottom: 30px; }
+        .property-title { font-size: 22px; font-weight: 700; margin-bottom: 5px; }
+        .property-location { color: var(--text-gray); font-size: 16px; }
+
+        .content-boxes { flex-grow: 1; display: flex; flex-direction: column; gap: 20px; }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 25px;
+            height: 100%;
+        }
+
+        .info-box.execution { border-left: 3px solid var(--accent-gold); background: rgba(212, 175, 55, 0.02); }
+
+        .box-label { font-size: 11px; text-transform: uppercase; color: var(--accent-gold); margin-bottom: 10px; font-weight: 800; letter-spacing: 1px; }
+        .box-content { font-size: 15px; line-height: 1.6; color: var(--text-gray); }
+
+        /* CTA Section */
+        .cta-section { padding: 100px 0; text-align: center; }
+        .cta-button { background: var(--gradient-primary); color: var(--primary-black); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(212, 175, 55, 0.4); }
+
+        /* Footer */
+        footer { padding: 80px 0 40px; background: var(--primary-black); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .footer-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-column h4 { margin-bottom: 20px; color: var(--text-white); font-size: 16px; }
+        .footer-column a { display: block; color: var(--text-gray); text-decoration: none; margin-bottom: 12px; font-size: 14px; transition: 0.3s; }
+        .footer-column a:hover { color: var(--accent-gold); }
+
+        .footer-legal { max-width: 1200px; margin: 40px auto 0; padding: 30px 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 12px; line-height: 1.7; color: #666; }
+
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><img src="chessboard-logo.png" alt="Chessboard Capital" /></div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Capital Strategies</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://forms.gle/qJqgrJTHYVdExTB1A" target="_blank" style="color: var(--accent-gold); font-weight: 600;">Request Term Sheet</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Proven <span class="gradient-text">Execution</span></h1>
+            <p class="hero-description">Case studies in the "Complexity Zone." How we deliver certain outcomes for high-performance builders when standard lenders fall short.</p>
+        </div>
+    </header>
+
+    <section class="case-studies">
+        <div class="grid">
+            <!-- Case 1 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="loan-type">Ground Up Construction</div>
+                    <div class="loan-amount">$2,500,000</div>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">Luxury SFR</div>
+                    <div class="property-location">California</div>
+                </div>
+                <div class="content-boxes">
+                    <div class="info-box">
+                        <div class="box-label">The Challenge</div>
+                        <p class="box-content">Borrower with limited direct experience and the requirement to manage the project remotely—factors that typically fall outside standard lender boxes.</p>
+                    </div>
+                    <div class="info-box execution">
+                        <div class="box-label">Chessboard Execution</div>
+                        <p class="box-content">Leveraged prime asset location and verified professional experience to deliver execution certainty despite the remote management hurdle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="loan-type">Ground Up Construction</div>
+                    <div class="loan-amount">$5,000,000</div>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">SFR Subdivision</div>
+                    <div class="property-location">California</div>
+                </div>
+                <div class="content-boxes">
+                    <div class="info-box">
+                        <div class="box-label">Strategic Focus</div>
+                        <p class="box-content">High-velocity production builder requiring scalable capital and maximum leverage.</p>
+                    </div>
+                    <div class="info-box execution">
+                        <div class="box-label">Chessboard Execution</div>
+                        <p class="box-content">70% lot financing with 100% construction budget holdback.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="loan-type">Ground Up Construction</div>
+                    <div class="loan-amount">$10.0M ARV</div>
+                </div>
+                <div class="property-info">
+                    <div class="property-title">Luxury SFR</div>
+                    <div class="property-location">California</div>
+                </div>
+                <div class="content-boxes">
+                    <div class="info-box">
+                        <div class="box-label">The Challenge</div>
+                        <p class="box-content">Unique ownership structure where primary guarantors held less than 50% equity—a structural blocker for institutional "debt factories."</p>
+                    </div>
+                    <div class="info-box execution">
+                        <div class="box-label">Chessboard Execution</div>
+                        <p class="box-content">Conducted deep-dive legal review of the Operating Agreement and validated financial strength to clear the structural "Complexity Zone."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 20px;">Ready to Fund Your <span class="gradient-text">Next Move</span>?</h2>
+            <p style="font-size: 18px; color: var(--text-gray); margin-bottom: 40px;">Get a reliable path to approval for your high-alpha projects.</p>
+            <a href="https://forms.gle/qJqgrJTHYVdExTB1A" target="_blank" class="cta-button">Request Project Review</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Capital Strategies</h4>
+                <a href="construction.html">Construction Loans</a>
+                <a href="adc.html">ADC Loans</a>
+                <a href="bridge.html">Bridge Loans</a>
+                <a href="renovation.html">Renovation Loans</a>
+                <a href="equity.html">JV Equity</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="about.html">About Us</a>
+                <a href="index.html#testimonials">Success Stories</a>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#blog">Market Insights</a>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+        <div class="footer-legal">
+            © Chessboard Capital, Inc. Chessboard Capital, LLC 2026 All Rights Reserved. Chessboard Capital, LLC is licensed with the California Department of Financial Protection and Innovation. In California, all loans are made or arranged by Chessboard Capital, LLC pursuant to a California Finance Lenders Law license No. 60DBO-201383 (NMLS ID No. 2672032). Chessboard Capital, Inc. is licensed with the California Department of Real Estate under license no. 01919762. Please visit www.nmlsconsumeraccess.org for more licensing information. All Chessboard Capital companies make loans only for business or commercial purposes and not for personal, family, or household purposes. Loan product availability may be limited in certain states. This is not a commitment to lend. All loans are subject to borrower underwriting and credit approval, at Chessboard Capital's sole and absolute discretion. Rates, fees and related terms are subject to change at any time without notice, and may vary among borrowers, depending on a variety of matters. Other restrictions may apply.
+        </div>
+    </footer>
+</body>
+</html>
