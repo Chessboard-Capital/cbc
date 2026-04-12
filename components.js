@@ -32,7 +32,7 @@ const footerHTML = `
         </div>
         <div class="footer-column">
             <h4>Resources</h4>
-            <a href="index.html#faq">FAQ</a>
+            <a href="faq.html">FAQ</a>
             <a href="index.html#blog">Market Insights</a>
         </div>
         <div class="footer-column">
