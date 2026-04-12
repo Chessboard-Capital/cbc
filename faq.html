@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Chessboard Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #141414;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4C1;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--primary-black); color: var(--text-white); overflow-x: hidden; line-height: 1.6; }
+        
+        /* Navigation - Synchronized with index.html */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 20px 0; transition: all 0.3s ease; }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 50px; display: flex; align-items: center; }
+        .logo img { height: 100%; width: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { color: var(--text-white); }
+        
+        /* Hero section */
+        .faq-hero { padding: 180px 0 80px; text-align: center; background: linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%); }
+        .faq-hero h1 { font-size: clamp(48px, 8vw, 72px); font-weight: 800; line-height: 1.1; margin-bottom: 30px; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-description { font-size: 24px; color: var(--text-gray); max-width: 800px; margin: 0 auto; }
+        
+        /* FAQ Section padding and grid */
+        .faq-section { padding: 100px 0; background: var(--primary-black); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        .category-header { margin-bottom: 30px; margin-top: 40px; }
+        .category-header h2 { font-size: 14px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 15px; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; }
+        .faq-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px; transition: 0.3s; }
+        .faq-card:hover { border-color: rgba(212, 175, 55, 0.3); transform: translateY(-5px); }
+        .faq-card h3 { font-size: 24px; margin-bottom: 15px; font-weight: 700; color: var(--text-white); }
+        .faq-card p { font-size: 18px; color: var(--text-gray); line-height: 1.8; }
+        
+        /* Footer - Direct match logic */
+        footer { padding: 60px 0 30px; background: var(--primary-black); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .footer-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-column h4 { margin-bottom: 20px; color: var(--text-white); font-size: 16px; }
+        .footer-column a { display: block; color: var(--text-gray); text-decoration: none; margin-bottom: 10px; font-size: 14px; transition: 0.3s; }
+        .footer-column a:hover { color: var(--accent-gold); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-gray); margin-top: 40px; }
+        .footer-legal { max-width: 1200px; margin: 40px auto 0; padding: 30px 40px; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 12px; line-height: 1.7; color: #666; text-align: left; }
+        
+        @media (max-width: 768px) { .nav-links { display: none; } .faq-grid { grid-template-columns: 1fr; } .footer-content { grid-template-columns: 1fr; } }
+    </style>
+    <script src="components.js"></script>
+</head>
+<body>
+    <nav></nav>
+    <header class="faq-hero">
+        <div class="container">
+            <h1>Strategic <span class="gradient-text">Insights</span></h1>
+            <p class="hero-description">Clarity builds trust and enduring partnerships</p>
+        </div>
+    </header>
+    <main class="faq-section">
+        <div class="container">
+            <div class="category-header"><h2>LA Fire-Rebuild Specialist</h2></div>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3>Which areas are eligible for your LA Fire-Rebuild construction programs?</h3>
+                    <p>We consider all fire-impacted zones in Los Angeles County. We are actively working with builders who pursue opportunities in Altadena, Malibu, and the Pacific Palisades.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>Why is Chessboard Capital comfortable with rebuilds when other lenders are not?</h3>
+                    <p>Local presence and direct site intelligence. Our principal personally vetted sites throughout 2025 and continue to monitor development progress in these zones through 2026. We view rebuilding these communities as a high-impact mandate that requires a lender who understands the terrain.</p>
+                </div>
+            </div>
+            
+            <div class="category-header"><h2>Capital Strategy & Comparison</h2></div>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3>Why work with Chessboard Capital when banks offer lower interest rates?</h3>
+                    <p>Banks value deposits and tax returns; we value project alpha and execution certainty. We provide higher leverage (up to 90% LTC), flexibility, and access to a proprietary investor network that banks cannot match. We help you scale past bank limitations.</p>
+                </div>
+                <div class="faq-card">
+                    <h3>What projects are NOT a fit for Chessboard Capital?</h3>
+                    <p>We do not consider owner-occupied primary residences or consumer loans. Our mandate is strictly for professional builders, developers, and investors focused on high-alpha business purposes.</p>
+                </div>
+            </div>
+            
+            <div class="category-header"><h2>Operational Velocity</h2></div>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <h3>What is the typical response time for construction draws?</h3>
+                    <p>Efficiency is our baseline. Typically, a draw request is reviewed and funded within 2-3 business days after inspection.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
