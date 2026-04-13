@@ -34,7 +34,6 @@ const footerHTML = `
         <div class="footer-column">
             <h4>Resources</h4>
             <a href="faq.html">FAQ</a>
-            <a href="index.html#blog">Market Insights</a>
         </div>
         <div class="footer-column">
             <h4>Connect</h4>
