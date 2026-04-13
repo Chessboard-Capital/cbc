@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Chessboard Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-black: #0a0a0a;
+            --secondary-black: #141414;
+            --accent-gold: #D4AF37;
+            --accent-gold-light: #F4E4C1;
+            --accent-gold-dark: #B8941F;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4C1 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--primary-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* --- STABILIZED NAVIGATION CSS --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 90px; /* Locked height for consistency */
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { height: 50px; display: flex; align-items: center; }
+        .logo img { height: 50px !important; width: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3)); }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-white); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--gradient-primary); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        .contact-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding-top: 90px; /* Matches fixed nav height */
+            background: linear-gradient(180deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+        }
+
+        .hero-background {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+        .hero-content { max-width: 1000px; margin: 0 auto; padding: 0 40px; text-align: center; z-index: 1; }
+        .hero-content h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; margin-bottom: 20px; }
+        .gradient-text { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-description { font-size: 20px; color: var(--text-gray); line-height: 1.6; }
+
+        /* --- CONTACT CONTENT --- */
+        .contact-content { padding: 80px 0; background: var(--secondary-black); }
+        .contact-container { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+        .contact-info { display: flex; flex-direction: column; gap: 30px; }
+        .contact-item { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px; transition: all 0.3s ease; }
+        .contact-item:hover { transform: translateY(-5px); border-color: rgba(212, 175, 55, 0.3); }
+        .contact-icon { width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; }
+        .contact-item h3 { font-size: 24px; margin-bottom: 10px; }
+        .contact-item p { color: var(--text-gray); line-height: 1.6; }
+        .contact-item a { color: var(--accent-gold); text-decoration: none; }
+
+        .contact-form { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 500; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 15px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: white;
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+
+        .submit-button {
+            background: var(--gradient-primary); color: var(--primary-black); padding: 15px 40px;
+            border: none; border-radius: 50px; font-weight: 600; cursor: pointer; width: 100%;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); transition: all 0.3s ease;
+        }
+        .submit-button:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); }
+
+        /* --- STABILIZED FOOTER CSS --- */
+        footer { padding: 80px 0 40px; background: var(--primary-black); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .footer-content {
+            max-width: 1400px; margin: 0 auto; padding: 0 40px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-column h4 { margin-bottom: 25px; color: white; font-size: 18px; }
+        .footer-column a { display: block; color: var(--text-gray); text-decoration: none; margin-bottom: 12px; transition: color 0.3s ease; }
+        .footer-column a:hover { color: var(--accent-gold); }
+
+        .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 40px; text-align: center; }
+        .footer-legal { max-width: 1200px; margin: 20px auto 0; padding: 0 40px; font-size: 11px; line-height: 1.8; color: #555; text-align: left; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav></nav>
+
+    <section class="contact-hero">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <h1>Let's Make Your <span class="gradient-text">Next Move</span></h1>
+            <p class="hero-description">Ready to accelerate your growth? We're here to discuss your strategic capital needs.</p>
+        </div>
+    </section>
+
+    <section class="contact-content">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>Visit Us</h3>
+                    <p>1670 S Amphlett Blvd, Suite 214-48<br>San Mateo, CA 94402</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>Call Us</h3>
+                    <p><a href="tel:650.600.1868">650.600.1868</a></p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:info@chessboardcapital.com">info@chessboardcapital.com</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Tell Us About Your Project *</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer></footer>
+
+    <script src="components.js"></script>
+
+    <script>
+        // Redirect form data to default email client
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            const subject = encodeURIComponent(`Inquiry from ${name}`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nProject Details:\n${message}`);
+            window.location.href = `mailto:info@chessboardcapital.com?subject=${subject}&body=${body}`;
+        });
+
+        // Dynamic navigation background
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 10, 10, 0.98)';
+                nav.style.height = '80px';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+                nav.style.height = '90px';
+            }
+        });
+    </script>
+</body>
+</html>
